@@ -1,51 +1,31 @@
 
-const datesObject = [
-			{
-				"morning":   new Date().setHours(08,59,59) 
-			},
-			{
-				"befornoon":   new Date().setHours(14,59,59) 
-			},
-			{
-				"afternoon":   new Date().setHours(32,59,59) 
-			}
-
-]
-
-
-const setTimeOfDay = new Date().getHours();
-let morning = datesObject[0].morning;
-let befornoon = datesObject[1].befornoon;
-let afternoon = datesObject[2].afternoon;
-
-let date1, date2, date3;
-if(setTimeOfDay >= 0 && setTimeOfDay < 9){
-	date1 = morning;
-} else if(setTimeOfDay >= 9 && setTimeOfDay < 15){
-	date2 = befornoon;
-} else{
-	date3 = afternoon;
-}
-
-dateCount(date1, date2, date3);
-
-function dateCount(date1,date2, date3){
 	setInterval(() => {
-  const currentDate = new Date()
+	//set day hours
+	const d = new Date();
+	const setTimeOfDay = d.getHours();
+	//set day hours
+	let	date1 = new Date().setHours(08,59,59) 
+	let date2 =  new Date().setHours(13,59,59) 
+	let date3 = new Date().setHours(32,59,59) 
+
+  const currentDate = d;
   const timeBetweenDates1 = Math.ceil(( date1 - currentDate ) / 1000)
-			if(timeBetweenDates1 > 0){
+	const timeBetweenDates2 = Math.ceil(( date2 - currentDate ) / 1000);
+	const timeBetweenDates3 = Math.ceil(( date3 - currentDate ) / 1000)
+			if(setTimeOfDay >= 0 && setTimeOfDay < 9){
+				if(timeBetweenDates1 < 0) return
 				flipAllCards(timeBetweenDates1)
 			}
-			const timeBetweenDates2 = Math.ceil(( date2 - currentDate ) / 1000)
-			if(timeBetweenDates2 > 0){
+			else if(setTimeOfDay >= 9 && setTimeOfDay < 14){
+				if(timeBetweenDates2 < 0) return
 				flipAllCards(timeBetweenDates2)
 			}
-		  const timeBetweenDates3 = Math.ceil(( date3 - currentDate ) / 1000)
-			if(timeBetweenDates3 > 0){
+			else{
+				if(timeBetweenDates3 < 0) return
 				flipAllCards(timeBetweenDates3)
 			}
 	}, 1000)
-}
+
 
 function flipAllCards(time) {
   const seconds = time % 60

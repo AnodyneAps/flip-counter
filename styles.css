@@ -26,15 +26,15 @@ display: flex;
 justify-content: center;
 align-items: center;
 width: 100%;
-font-size: 0.8rem;
-height: 32px;
+font-size: 1.8rem;
+height: 60px;
 background-color: var(--orange);
 gap: .15em;
 z-index: 1;
 }
 .flip-container .flip-outer-text{
   color: white;
-  font-size: 1rem;
+  font-size: 1.2rem;
   padding: 0 10px;
 }
 .dots{
@@ -57,24 +57,24 @@ z-index: 1;
   display: inline-flex;
   flex-direction: column;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .2);
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 .top,
 .bottom,
 .flip-card .top-flip,
 .flip-card .bottom-flip {
-  height: 11px;
+  height: 20px;
   line-height: 1;
-  padding: 4px;
+  padding: 5px;;
   overflow: hidden;
 }
 
 .top,
 .flip-card .top-flip {
-  background-color: #f7f7f7;
-  border-top-right-radius: 3px;
-  border-top-left-radius: 3px;
+  background-color: #dbdbdb;
+  border-top-right-radius:4px;
+  border-top-left-radius:4px;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -83,14 +83,14 @@ z-index: 1;
   background-color: white;
   display: flex;
   align-items: flex-end;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 
 .flip-card .top-flip {
   position: absolute;
   width: 100%;
-  animation: flip-top 250ms ease-in;
+  animation: flip-top 350ms cubic-bezier(0.37, 0.01, 0.94, 0.35);
   transform-origin: bottom;
 }
 
@@ -104,7 +104,7 @@ z-index: 1;
   position: absolute;
   bottom: 0;
   width: 100%;
-  animation: flip-bottom 250ms ease-out 250ms;
+  animation: flip-bottom 300ms cubic-bezier(0.15, 0.45, 0.28, 1) 350ms;
   transform-origin: top;
   transform: rotateX(90deg);
 }

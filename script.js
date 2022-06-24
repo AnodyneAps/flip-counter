@@ -1,21 +1,19 @@
 
 const closeBtn = document.querySelector(".close__btn");
-const flipBar = document.getElementById("flip-container");
+const flipBar = document.querySelector(".flip-container");
 
 closeBtn.addEventListener("click", ()=>{
-	let d = new Date();
-	d.setMinutes(5 + d.getMinutes());
-
-	document.cookie = "myCookieName=thisIsMyCookie; expires = " + d + "; ";
-
-	flipBar.classList.add("hide");
-	flipBar.classList.remove("show-flip")
-
+	localStorage.setItem("className", "show-flip");
+	let classFromLocalStorage = localStorage.getItem("className");
+	if (!classFromLocalStorage){
+		flipBar.classList.add("show-flip")
+	}
+	flipBar.classList.remove("show-flip");
 });
 
 const checkCookie = () => {
-	let input = document.cookie.split("=");
-	if(input[0] == "myCookieName") {
+	let classFromLocalStorage = localStorage.getItem("className");
+	if(classFromLocalStorage == "show-flip") {
 		flipBar.classList.add("hide");
 		flipBar.classList.remove("show-flip");
 	} else {
@@ -29,6 +27,25 @@ window.onload = () =>{
 		checkCookie();
 	},1000)
 }
+
+
+// clear localStorage after some time 
+let  minute = 1; // to clear the localStorage after 1 minute
+               // (if someone want to clear after 1 hour multiply by extra 60 or if you want to add more minuttes simply add 10 infront of minute variable)
+let now = new Date().getTime();
+var setupTime = localStorage.getItem('setupTime');
+if (setupTime == null) {
+    localStorage.setItem('setupTime', now)
+} else {
+    if(now-setupTime > minute*60*1000) {
+       localStorage.removeItem("className");
+        localStorage.setItem('setupTime', now);
+    }
+}
+
+
+
+
 	setInterval(() => {
 	//set day hours
 	const d = new Date();
@@ -104,3 +121,5 @@ bottomFlip.addEventListener("animationend", e =>{
 
 flipCard.append(topFlip, bottomFlip);
 }
+
+

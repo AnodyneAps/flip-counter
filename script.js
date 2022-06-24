@@ -1,4 +1,34 @@
 
+const closeBtn = document.querySelector(".close__btn");
+const flipBar = document.getElementById("flip-container");
+
+closeBtn.addEventListener("click", ()=>{
+	let d = new Date();
+	d.setMinutes(5 + d.getMinutes());
+
+	document.cookie = "myCookieName=thisIsMyCookie; expires = " + d + "; ";
+
+	flipBar.classList.add("hide");
+	flipBar.classList.remove("show-flip")
+
+});
+
+const checkCookie = () => {
+	let input = document.cookie.split("=");
+	if(input[0] == "myCookieName") {
+		flipBar.classList.add("hide");
+		flipBar.classList.remove("show-flip");
+	} else {
+		flipBar.classList.add("show-flip");
+		flipBar.classList.remove("hide");
+	}
+}
+
+window.onload = () =>{
+	setTimeout(()=>{
+		checkCookie();
+	},1000)
+}
 	setInterval(() => {
 	//set day hours
 	const d = new Date();

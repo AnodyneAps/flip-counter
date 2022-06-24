@@ -17,8 +17,10 @@ body{
   padding: 0;
 	
 }
-p{ padding: 1rem 2rem;}
 .flip-container{
+  display: none;
+}
+.flip-container.show-flip{
 position: fixed;
 bottom: 0;
 left: 0;
@@ -32,7 +34,7 @@ background-color: var(--orange);
 gap: .15em;
 z-index: 1;
 }
-.flip-container .flip-outer-text{
+.flip-container.show-flip .flip-outer-text{
   color: white;
   font-size: 1.2rem;
   padding: 0 10px;
@@ -112,5 +114,44 @@ z-index: 1;
 @keyframes flip-bottom {
   100% {
     transform: rotateX(0deg);
+  }
+}
+
+.flip-container.show-flip .close__btn{
+  color: white;
+  /* text-shadow: .5px 1px 1px #def, 0 0 0 #000, .5px .5px 1px #def; */
+  position: absolute;
+  bottom: 5px;
+  right: 20px;
+  z-index: 999;
+  width: 50px;
+  height: 50px;
+  background-color: var(--orange);
+  cursor: pointer;
+}
+.flip-container.show-flip .close__btn::after,
+.flip-container.show-flip .close__btn::before{
+  content: '';
+  position: absolute;
+  top:50%;
+  left: 30%;
+  transform: translate(-70%, -50%);
+  width: 20px;
+  height: .5px;
+  background-color: white;
+}
+.flip-container.show-flip .close__btn::after{
+  transform: rotate(-45deg);
+}
+.flip-container.show-flip .close__btn::before{
+  transform: rotate(45deg);
+}
+.flip-container.show-flip.hide{
+  display: none !important;
+}
+
+@media only  screen and (max-width: 769px) {
+  .flip-container.show-flip .close__btn {
+    bottom: 50px;
   }
 }
